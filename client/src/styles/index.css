@@ -1,0 +1,217 @@
+@font-face {
+  font-family: 'InterVar';
+  src: local('Inter'), url('https://rsms.me/inter/font-files/Inter-roman.var.woff2?v=4.1') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --bg: #f7f5f2;
+  --surface: #ffffff;
+  --ink: #1e1f20;
+  --muted: #676767;
+  --beige: #e9e3da;
+  --accent: #0b7d62; /* deep emerald */
+  --accent-dark: #096550;
+  --accent-rgb: 11, 125, 98;
+  --text-color: #1e1f20;
+  --muted-text: #6b6b6b;
+  --border-color: rgba(0,0,0,0.08);
+  --dark-bg: #111315;
+  --light-text: rgba(255,255,255,0.75);
+  --shadow: 0 10px 30px rgba(0,0,0,0.06);
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: radial-gradient(1200px 800px at 20% 0%, #faf8f6 0%, var(--bg) 60%),
+              radial-gradient(800px 600px at 100% 100%, var(--beige) 0%, transparent 60%);
+  color: var(--ink);
+  font-family: InterVar, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 32px 32px;
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), #fff);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.accent { color: var(--accent); }
+
+.btn {
+  appearance: none;
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: background-color .2s ease, transform .15s ease, filter .2s ease;
+}
+.btn:hover { background-color: var(--accent-dark); transform: translateY(-1px); filter: none; }
+.btn:active { transform: translateY(0); }
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e6e2da;
+  background: #fff;
+}
+
+.h1 {
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.h2 { font-size: 20px; font-weight: 600; }
+.muted { color: var(--muted); }
+
+.glass {
+  backdrop-filter: blur(8px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* Responsive utilities */
+.hide-on-mobile { display: initial; }
+.show-on-mobile { display: none; }
+
+/* Transaction card layout for mobile */
+.transaction-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Mobile-first adjustments */
+@media (max-width: 768px) {
+  .container { padding: 16px; }
+  .card { border-radius: 14px; }
+  .btn { padding: 14px 18px; border-radius: 12px; font-size: 1rem; }
+  .input { padding: 14px 16px; font-size: 1rem; }
+  .h2 { font-size: 18px; }
+  .muted { font-size: 0.95rem; }
+
+  /* Navbar mobile helpers */
+  .hide-on-mobile { display: none !important; }
+  .show-on-mobile { display: block !important; }
+
+  /* General grid/flex stacks */
+  .stack-on-mobile { display: grid; gap: 12px; grid-template-columns: 1fr !important; }
+
+  /* Full-width actions */
+  .btn.block { width: 100%; }
+  
+  /* Modal improvements */
+  .glass { padding: 16px !important; }
+  
+  /* Form improvements */
+  form { gap: 12px !important; }
+  
+  /* Button improvements */
+  .btn { min-height: 44px; }
+  
+  /* Input improvements */
+  .input { min-height: 44px; }
+  
+  /* Prevent horizontal overflow */
+  * { max-width: 100%; }
+  
+  /* Table improvements */
+  table { font-size: 14px; }
+  
+  /* Chart container improvements */
+  .recharts-wrapper { 
+    max-width: 100% !important; 
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  /* Ensure chart containers have proper height on mobile */
+  .chart-container {
+    position: relative !important;
+    width: 90% !important;
+    min-height: 300px !important;
+    height: 300px !important;
+    margin: 1.5rem auto !important;
+    display: block !important;
+  }
+  
+  /* Fallback for inline style containers */
+  .card > div[style*="height:300"] {
+    position: relative !important;
+    width: 90% !important;
+    height: 300px !important;
+    min-height: 300px !important;
+    margin: 1.5rem auto !important;
+    display: block !important;
+  }
+  
+  /* Text wrapping */
+  .h1, .h2, h1, h2, h3, h4, h5, h6 { word-wrap: break-word; }
+  
+  /* Hamburger button styling */
+  .show-on-mobile.btn {
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    min-width: unset !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 18px !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .container { padding: 12px; }
+  .card { padding: 16px; }
+  .h1 { font-size: 24px; }
+  .h2 { font-size: 16px; }
+  
+  /* Make buttons full width on very small screens */
+  .btn { width: 100%; }
+  
+  /* Stack form elements */
+  form { display: flex; flex-direction: column; gap: 12px; }
+  
+  /* Reduce chart heights for very small screens */
+  .chart-container {
+    position: relative !important;
+    width: 95% !important;
+    height: 250px !important;
+    min-height: 250px !important;
+    margin: 1rem auto !important;
+    display: block !important;
+  }
+  
+  .card > div[style*="height:300"] {
+    position: relative !important;
+    width: 95% !important;
+    height: 250px !important;
+    min-height: 250px !important;
+    margin: 1rem auto !important;
+    display: block !important;
+  }
+}
+
